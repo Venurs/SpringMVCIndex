@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--使用2.4支持el表达式-->
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <display-name>Archetype Created Web Application</display-name>
+<!--  根应用上下文，只有一个， 提供了整个应用的组件-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/spring/applicationContext.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>
+      org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<!--    单个servlet的应用上下文，可能存在多个 如controller， handlerMapping，viewResolver-->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+<!--    拦截请求路径-->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+</web-app>
